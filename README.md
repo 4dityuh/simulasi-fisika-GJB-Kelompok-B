@@ -19,7 +19,9 @@ Aplikasi web interaktif untuk mempelajari **Gerak Jatuh Bebas (GJB)**. Pengguna 
 ## Cara menjalankan
 
 Aplikasi ini berupa situs statis dan tidak memerlukan instalasi package atau server backend.
-Cukup klik [link ini](https://4dityuh.github.io/simulasi-fisika-GJB-Kelompok-B/)
+
+Cukup klik [link ini](https://4dityuh.github.io/simulasi-fisika-GJB-Kelompok-B/).
+
 Jika rumus tampil sebagai teks biasa, periksa koneksi internet dan muat ulang halaman.
 
 ## Petunjuk penggunaan
