@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulasi interaktif Gerak Jatuh Bebas (GJB).">
+  <title>Simulasi Gerak Jatuh Bebas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> KELOMPOK B <span class="eyebrow-divider">/</span> FISIKA INTERAKTIF</div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
+          <span id="themeIcon" aria-hidden="true">☾</span><span id="themeLabel">Mode gelap</span>
+        </button>
+      </div>
+      <h1>Gerak Jatuh Bebas</h1>
+      <p class="subtitle">Amati perubahan posisi, kecepatan, dan percepatan benda selama jatuh.</p>
+      
+      <section class="card members-card" aria-labelledby="members-title">
+      <p class="section-kicker">TIM PENGEMBANG</p>
+      <h2 id="members-title">Anggota Kelompok</h2>
+      <ul class="anggota">
+        <li>
+          <p>AL KINDY NAJWAN</p>
+          <span>21114012610008</span>
+        </li>
+        <li>
+          <p>FARREL ADITYA PRATAMA</p>
+          <span>21114012610048</span>
+        </li>
+        <li>
+          <p>MISAEL SAMMY GIDEON</p>
+          <span>21114012610084</span>
+        </li>
+        <li>
+          <p>RENJIRO DANISWARA TIO WIBOWO</p>
+          <span>21114012610128</span>
+        </li>
+      </ul>
+    </section>
+    </header>
+
+    <section class="controls card" aria-labelledby="control-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PENGATURAN</p>
+          <h2 id="control-title">Parameter simulasi</h2>
+        </div>
+        <button class="button button-quiet" id="resetButton" type="button" title="Kembalikan pengaturan awal">Atur ulang</button>
+      </div>
+      <div class="parameter-grid">
+        <label class="field">
+          <span class="field-label">Ketinggian awal <small>h₀</small></span>
+          <span class="input-wrap"><input id="heightInput" type="number" min="1" max="500" step="1" value="20"><span>m</span></span>
+          <span class="hint">Rentang 1–500 meter</span>
+        </label>
+        <label class="field">
+          <span class="field-label">Gravitasi <small>g</small></span>
+          <span class="input-wrap"><input id="gravityInput" type="number" min="0.1" max="30" step="0.1" value="9.8"><span>m/s²</span></span>
+          <span class="hint">Rentang 0,1–30 m/s²</span>
+        </label>
+      </div>
+      <div class="control-actions">
+        <button class="button button-primary" id="playButton" type="button"><span class="play-icon" id="playIcon">▶</span><span id="playLabel">Mulai simulasi</span></button>
+        <button class="button button-secondary" id="stepButton" type="button">Langkah +0,1 s</button>
+      </div>
+      <p class="assumption">Asumsi: benda dijatuhkan dari keadaan diam dan hambatan udara diabaikan.</p>
+    </section>
+
+    <section class="visual-grid">
+      <article class="card scene-card">
+        <div class="section-heading">
+          <div><p class="section-kicker">ANIMASI</p><h2>Lintasan benda</h2></div>
+          <span class="live-pill"><span></span> <span id="statusText">Siap</span></span>
+        </div>
+        <div class="scene" id="scene">
+          <div class="sky-glow"></div>
+          <div class="height-label" id="heightLabel">20 m</div>
+          <div class="height-line"></div>
+          <div class="drop-line"></div>
+          <div class="ball" id="ball" aria-label="Benda simulasi"></div>
+          <div class="ground"><span>PERMUKAAN TANAH</span></div>
+          <div class="scene-scale"><span>h₀</span><span>0 m</span></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-labels"><span>Waktu simulasi</span><strong id="timeReadout">0,00 s</strong></div>
+          <input id="timeSlider" type="range" min="0" max="2.02" step="0.01" value="0" aria-label="Waktu simulasi">
+          <div class="timeline-labels muted"><span>0 s</span><span id="totalTimeLabel">2,02 s (waktu jatuh)</span></div>
+        </div>
+      </article>
+
+      <article class="card results-card">
+        <div class="section-heading"><div><p class="section-kicker">HASIL REAL-TIME</p><h2>Besaran fisika</h2></div></div>
+        <div class="metrics">
+          <div class="metric metric-accent"><span>Ketinggian saat ini</span><strong id="positionValue">20,00 <small>m</small></strong></div>
+          <div class="metric"><span>Jarak yang ditempuh</span><strong id="distanceValue">0,00 <small>m</small></strong></div>
+          <div class="metric"><span>Kecepatan saat ini</span><strong id="velocityValue">0,00 <small>m/s</small></strong></div>
+          <div class="metric"><span>Percepatan</span><strong id="accelerationValue">9,80 <small>m/s²</small></strong></div>
+        </div>
+        <div class="final-result">
+          <div><span>Waktu total jatuh</span><strong id="totalTimeValue">2,02 s</strong></div>
+          <div><span>Kecepatan akhir</span><strong id="finalVelocityValue">19,80 m/s</strong></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="analysis-grid" aria-label="Grafik dan perhitungan otomatis">
+    <section class="card chart-card">
+      <div class="section-heading">
+        <div><p class="section-kicker">VISUALISASI DATA</p><h2>Grafik gerak</h2></div>
+        <label class="select-wrap"><span class="sr-only">Pilih grafik</span>
+          <select id="chartSelect">
+            <option value="position">Ketinggian terhadap waktu (h–t)</option>
+            <option value="velocity">Kecepatan terhadap waktu (v–t)</option>
+            <option value="acceleration">Percepatan terhadap waktu (a–t)</option>
+          </select>
+        </label>
+      </div>
+      <div class="chart-wrap"><canvas id="chartCanvas" aria-label="Grafik gerak benda" role="img"></canvas></div>
+      <p class="chart-note" id="chartNote">Ketinggian berkurang secara kuadratik terhadap waktu.</p>
+    </section>
+
+    <section class="card calculation-card">
+      <div class="section-heading">
+        <div><p class="section-kicker">PERHITUNGAN OTOMATIS</p><h2>Substitusi persamaan</h2></div>
+        <span class="calculation-tag">Mengikuti input</span>
+      </div>
+      <p class="calculation-intro">Bagian ini menghitung hasil secara langsung dari ketinggian awal dan gravitasi yang Anda masukkan, tanpa bergantung pada animasi.</p>
+      <div class="calculation-list">
+        <div class="calculation-item calculation-blue">
+          <div class="calculation-top"><span class="calculation-number">01</span><span class="calculation-icon">◷</span></div>
+          <span class="calculation-label">Waktu total jatuh</span>
+          <strong class="calculation-result" id="timeFormula">t = √(2 × 20 / 9,8) = 2,02 s</strong>
+        </div>
+        <div class="calculation-item calculation-violet">
+          <div class="calculation-top"><span class="calculation-number">02</span><span class="calculation-icon">↘</span></div>
+          <span class="calculation-label">Kecepatan akhir</span>
+          <strong class="calculation-result" id="velocityFormula">v = √(2 × 9,8 × 20) = 19,80 m/s</strong>
+        </div>
+        <div class="calculation-item calculation-teal">
+          <div class="calculation-top"><span class="calculation-number">03</span><span class="calculation-icon">⇣</span></div>
+          <span class="calculation-label">Jarak yang ditempuh</span>
+          <strong class="calculation-result" id="distanceFormula">s = ½ × 9,8 × 0² = 0,00 m</strong>
+        </div>
+        <div class="calculation-item calculation-amber">
+          <div class="calculation-top"><span class="calculation-number">04</span><span class="calculation-icon">⌖</span></div>
+          <span class="calculation-label">Ketinggian saat ini</span>
+          <strong class="calculation-result" id="positionFormula">h = 20 − ½ × 9,8 × 0² = 20,00 m</strong>
+        </div>
+      </div>
+    </section>
+    </section>
+
+    <section class="card explanation-card">
+      <p class="section-kicker">PERSAMAAN</p>
+      <h2>Dasar perhitungan</h2>
+      <div class="equations">
+        <div><span>Jarak yang ditempuh</span><strong>\(s(t) = \frac{1}{2}gt^2\)</strong></div>
+        <div><span>Ketinggian</span><strong>\(h(t) = h_0 - \frac{1}{2}gt^2\)</strong></div>
+        <div><span>Kecepatan</span><strong>\(v(t) = gt\)</strong></div>
+        <div><span>Waktu jatuh</span><strong>\(t = \sqrt{\frac{2h_0}{g}}\)</strong></div>
+        <div><span>Kecepatan akhir</span><strong>\(v = \sqrt{2gh_0}\)</strong></div>
+        <div><span>Percepatan</span><strong>\(a(t) = g\)</strong></div>
+        <div><span>Kecepatan dari waktu</span><strong>\(v(t) = gt\)</strong></div>
+        <div><span>Waktu dari kecepatan</span><strong>\(t = \frac{v}{g}\)</strong></div>
+        <div><span>Hubungan kecepatan dan jarak</span><strong>\(v^2 = 2gs\)</strong></div>
+        <div><span>Jarak dari kecepatan</span><strong>\(s = \frac{v^2}{2g}\)</strong></div>
+      </div>
+      <p class="direction-note">Benda dianggap dijatuhkan dari keadaan diam (v₀ = 0), dengan arah ke bawah sebagai arah positif. Nilai kecepatan ditampilkan sebagai besar kecepatan ke arah bawah.</p>
+    </section>
+
+    
+
+    <footer>Simulasi edukasi Gerak Jatuh Bebas • Satuan SI</footer>
+  </main>
+</body>
+</html>
