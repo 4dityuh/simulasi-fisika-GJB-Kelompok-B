@@ -2,6 +2,12 @@
 
 Dibuat oleh Kelompok B
 
+Anggota Kelompok:
+AL KINDY NAJWAN | 21114012610008
+FARREL ADITYA PRATAMA | 21114012610048
+MISAEL SAMMY GIDEON | 21114012610084
+RENJIRO DANISWARA TIO WIBOWO | 21114012610128
+
 Aplikasi web interaktif untuk mempelajari **Gerak Jatuh Bebas (GJB)**. Pengguna dapat mengubah ketinggian awal dan percepatan gravitasi, menjalankan animasi benda jatuh, melihat nilai besaran fisika secara langsung, serta mengamati grafik dan substitusi rumus.
 
 ## Fitur
