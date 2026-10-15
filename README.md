@@ -79,7 +79,7 @@ project/
 - Karena KaTeX dimuat dari CDN, koneksi internet diperlukan untuk menampilkan rumus dalam format matematika yang dirender.
 
 ## Video Demo
-berikut (link)[https://youtu.be/0Ix_IFydPKU]
+berikut [link](https://youtu.be/0Ix_IFydPKU)
 
 ## Screenshot
 <img width="4320" height="8720" alt="4dityuh github io_simulasi-fisika-GJB-Kelompok-B_(highh)" src="https://github.com/user-attachments/assets/d9d89030-5fef-475e-a4f3-48c327e6bf96" />
