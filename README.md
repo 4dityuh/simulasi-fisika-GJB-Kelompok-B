@@ -19,12 +19,7 @@ Aplikasi web interaktif untuk mempelajari **Gerak Jatuh Bebas (GJB)**. Pengguna 
 ## Cara menjalankan
 
 Aplikasi ini berupa situs statis dan tidak memerlukan instalasi package atau server backend.
-
-1. Unduh dan ekstrak file ZIP project.
-2. Pastikan `index.html`, `style.css`, `script.js`, dan `README.md` berada dalam folder yang sama.
-3. Buka `index.html` menggunakan browser modern seperti Google Chrome, Microsoft Edge, atau Firefox.
-4. Pastikan koneksi internet tersedia agar stylesheet dan skrip KaTeX dapat dimuat dari CDN sehingga persamaan matematika tampil dengan benar.
-
+Cukup klik [link ini](https://4dityuh.github.io/simulasi-fisika-GJB-Kelompok-B/)
 Jika rumus tampil sebagai teks biasa, periksa koneksi internet dan muat ulang halaman.
 
 ## Petunjuk penggunaan
